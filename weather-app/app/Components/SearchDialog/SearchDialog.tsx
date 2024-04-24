@@ -25,7 +25,7 @@ function SearchDialog() {
           <Command className="rounded-lg border shadow-md ">
             <CommandInput placeholder="Type a command or search..." />
             <ul className="px-3 pb-2">
-              <div className=""></div>
+              <div className="p-2 text-sm text-muted-foreground">Suggestions</div>
             </ul>
           </Command>
         </DialogContent>
