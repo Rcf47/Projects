@@ -34,6 +34,13 @@ const defaultState = [
     lat: 41.3828939,
     lon: 2.1774322,
   },
-]
+  {
+    name: "Moscow",
+    country: "Russia",
+    state: "Moscow oblast",
+    lat: 55.755826,
+    lon: 37.6172999,
+  },
+];
 
-export default defaultState
+export default defaultState;
