@@ -41,6 +41,13 @@ const defaultState = [
     lat: 55.755826,
     lon: 37.6172999,
   },
+  {
+    name: "Sosnovoborsk",
+    country: "Russia",
+    state: "Krasnoyarskiy krai",
+    lat: 56.1199999,
+    lon: 93.335,
+  },
 ];
 
 export default defaultState;
