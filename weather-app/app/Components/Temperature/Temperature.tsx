@@ -41,8 +41,8 @@ function Temperature() {
     return <div>Loading...</div>;
   }
   const temp = kelvinToCelcious(main?.temp);
-  const min_temp = kelvinToCelcious(main?.temp_min);
-  const max_temp = kelvinToCelcious(main?.temp_max);
+  const minTemp = kelvinToCelcious(main?.temp_min);
+  const maxTemp = kelvinToCelcious(main?.temp_max);
 
   const { main: weatherMain, description } = weather[0];
 
@@ -81,8 +81,8 @@ function Temperature() {
           <p className="pt-2 capitalize text-lg font-medium">{description}</p>
         </div>
         <p className="flex items-center gap-2"></p>
-        <span>Low: {min_temp}°</span>
-        <span>High: {max_temp}°</span>
+        <span>Low: {minTemp}°</span>
+        <span>High: {maxTemp}°</span>
       </div>
     </div>
   );

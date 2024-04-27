@@ -23,7 +23,7 @@ export const GlobalContextProvider = ({ children }) => {
     fetchForecast();
   }, []);
   return (
-    <GlobalContext.Provider value={{ forecast }}>
+    <GlobalContext.Provider value={{ forecast: forecast }}>
       <GlobalContextUpdate.Provider>{children}</GlobalContextUpdate.Provider>
     </GlobalContext.Provider>
   );
