@@ -12,6 +12,10 @@ export const unixToTime = (unix: number, timezone: number) => {
 };
 export const airQualityText = [
   {
+    rating: 10,
+    description: "very good",
+  },
+  {
     rating: 20,
     description: "good",
   },
