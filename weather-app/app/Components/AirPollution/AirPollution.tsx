@@ -29,7 +29,7 @@ function AirPollution() {
         {thermo} Air pollution
       </h2>
       <Progress value={airQualityIndex} max={100} className="progress" />
-      <p>Air quality is {filteredText?.description}.</p>
+      <p className="text-sm">Air quality is {filteredText?.description}.</p>
     </div>
   );
 }
