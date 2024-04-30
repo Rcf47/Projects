@@ -10,6 +10,13 @@ export const unixToTime = (unix: number, timezone: number) => {
     .utcOffset(timezone / 60)
     .format("HH:mm");
 };
+export const formatNumber = (number: number) => {
+  return number >= 1000000
+    ? (number / 1000000).toFixed(1) + "M"
+    : number >= 1000
+      ? (number / 1000).toFixed(1) + "K"
+      : number;
+};
 export const airQualityText = [
   {
     rating: 10,
