@@ -10,6 +10,9 @@ export const unixToTime = (unix: number, timezone: number) => {
     .utcOffset(timezone / 60)
     .format("HH:mm");
 };
+export const unixToDay = (unix: number) => {
+  return moment.unix(unix).format("ddd");
+};
 export const formatNumber = (number: number) => {
   return number >= 1000000
     ? (number / 1000000).toFixed(1) + "M"
