@@ -2,6 +2,7 @@ import AirPollution from "./Components/AirPollution/AirPollution";
 import Dailyforecast from "./Components/DailyForecast/DailyForecast";
 import DefaultCity from "./Components/DefaultCity/DefaultCity";
 import FeelsLike from "./Components/FeelsLike/FeelsLike";
+import Footer from "./Components/Footer/Footer";
 import Humidity from "./Components/Humidity/Humidity";
 import Mapbox from "./Components/Mapbox/Mapbox";
 import Navbar from "./Components/Navbar";
@@ -40,6 +41,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }
