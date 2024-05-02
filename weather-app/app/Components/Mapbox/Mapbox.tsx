@@ -26,8 +26,6 @@ function FlyToActiveCity({ activeCityCoords }) {
 function Mapbox() {
   const { forecast } = useGlobalContext();
   const activeCityCoords = forecast?.coord;
-  const lat = 56.1199999;
-  const lon = 93.335;
 
   if (!forecast || !forecast.coord || !activeCityCoords) {
     return (
