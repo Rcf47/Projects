@@ -1,5 +1,6 @@
 import AirPollution from "./Components/AirPollution/AirPollution";
 import Dailyforecast from "./Components/DailyForecast/DailyForecast";
+import DefaultCity from "./Components/DefaultCity/DefaultCity";
 import FeelsLike from "./Components/FeelsLike/FeelsLike";
 import Humidity from "./Components/Humidity/Humidity";
 import Navbar from "./Components/Navbar";
@@ -31,6 +32,9 @@ export default function Home() {
             <Humidity />
             <Visibility />
             <Pressure />
+          </div>
+          <div className="mapbox-con mt-4 flex gap-4">
+            <DefaultCity />
           </div>
         </div>
       </div>
