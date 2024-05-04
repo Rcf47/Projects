@@ -15,10 +15,13 @@ export const GlobalContextProvider = ({ children }) => {
   const [fiveDayForecast, setFiveDayForecast] = useState({});
   const [uvIndex, setUvIndex] = useState({});
   const [geoCodeList, setGeoCodeList] = useState(defaultState);
+  const [activeCityCoords, setActiveCityCoords] = useState([
+    56.1199999, 93.335,
+  ]);
 
-  const fetchForecast = async () => {
+  const fetchForecast = async (lat, lon) => {
     try {
-      const res = await axios.get("api/weather");
+      const res = await axios.get(`api/weather?lat=${lat}&lon=${lon}`);
       setForecast(res.data);
     } catch (error) {
       console.log("Error fetching forecast data: ", error.message);
@@ -26,9 +29,9 @@ export const GlobalContextProvider = ({ children }) => {
   };
 
   // Air quality
-  const fetchAirQuality = async () => {
+  const fetchAirQuality = async (lat, lon) => {
     try {
-      const res = await axios.get("api/pollution");
+      const res = await axios.get(`api/pollution?lat=${lat}&lon=${lon}`);
       setAirQuality(res.data);
     } catch (error) {
       console.log("Error fetching air quality data: ", error.message);
@@ -36,9 +39,9 @@ export const GlobalContextProvider = ({ children }) => {
   };
 
   // five day forecast
-  const fetchFiveDayForecast = async () => {
+  const fetchFiveDayForecast = async (lat, lon) => {
     try {
-      const res = await axios.get("api/fiveday");
+      const res = await axios.get(`api/fiveday?lat=${lat}&lon=${lon}`);
       setFiveDayForecast(res.data);
     } catch (error) {
       console.log("Error fetching five day forecast data: ", error.message);
@@ -46,9 +49,9 @@ export const GlobalContextProvider = ({ children }) => {
   };
 
   //fetch uv indexe
-  const fetchUvIndex = async () => {
+  const fetchUvIndex = async (lat, lon) => {
     try {
-      const res = await axios.get("api/uv");
+      const res = await axios.get(`api/uv?lat=${lat}&lon=${lon}`);
       setUvIndex(res.data);
     } catch (error) {
       console.log("Error fetching uv data: ", error.message);
