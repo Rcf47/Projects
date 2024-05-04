@@ -1,6 +1,9 @@
 "use client";
 
-import { useGlobalContext } from "@/app/context/globalContext";
+import {
+  useGlobalContext,
+  useGlobalContextUpdate,
+} from "@/app/context/globalContext";
 import { commandIcon } from "@/app/utils/icons";
 import { Button } from "@/components/ui/button";
 import { Command, CommandInput, CommandList } from "@/components/ui/command";
@@ -9,7 +12,12 @@ import React, { useState } from "react";
 
 function SearchDialog() {
   const { geoCodeList, inputValue, handleInput } = useGlobalContext();
+  const { setActiveCityCoords } = useGlobalContextUpdate();
   const [hoveredIndex, setHoveredIndex] = useState(0);
+
+  const getClickedCoords = (lat: number, lon: number) => {
+    setActiveCityCoords([lat, lon]);
+  };
   return (
     <div className="search-btn">
       <Dialog>
@@ -42,7 +50,13 @@ function SearchDialog() {
                 {geoCodeList &&
                   geoCodeList.map(
                     (
-                      item: { country: string; state: string; name: string },
+                      item: {
+                        country: string;
+                        state: string;
+                        name: string;
+                        lat: number;
+                        lon: number;
+                      },
                       index: number,
                     ) => {
                       const { country, state, name } = item;
@@ -50,6 +64,9 @@ function SearchDialog() {
                         <li
                           key={index}
                           onMouseEnter={() => setHoveredIndex(index)}
+                          onClick={() => {
+                            getClickedCoords(item.lat, item.lon);
+                          }}
                           className={`py-3 px-2 text-sm rounded-sm cursor-default ${hoveredIndex === index ? "bg-accent" : ""}`}
                         >
                           <p className="text">
