@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { createContext } from "react";
 import defaultState from "../utils/defaultState";
+import { debounce } from "lodash";
 
 const GlobalContext = createContext();
 const GlobalContextUpdate = createContext();
@@ -57,7 +58,15 @@ export const GlobalContextProvider = ({ children }) => {
       console.log("Error fetching uv data: ", error.message);
     }
   };
-
+  // fetch geocode list
+  const fetchGeoCodeList = async (search) => {
+    try {
+      const res = await axios.get(`api/geocode?search=${search}`);
+      setGeoCodeList(res.data);
+    } catch (error) {
+      console.log("Error fetching geocode data: ", error.message);
+    }
+  };
   // handle input
   const handleInput = (event) => {
     setInputValue(event.target.value);
@@ -65,12 +74,29 @@ export const GlobalContextProvider = ({ children }) => {
       setGeoCodeList(defaultState);
     }
   };
+  // debounce
   useEffect(() => {
-    fetchForecast();
-    fetchAirQuality();
-    fetchFiveDayForecast();
-    fetchUvIndex();
-  }, []);
+    const debouncedFetch = debounce((search) => {
+      fetchGeoCodeList(search);
+    }, 500);
+
+    if (inputValue) {
+      debouncedFetch(inputValue);
+    }
+
+    // cleanup
+    return () => {
+      return debouncedFetch.cancel();
+    };
+  }, [inputValue]);
+
+  useEffect(() => {
+    fetchForecast(activeCityCoords[0], activeCityCoords[1]);
+    fetchAirQuality(activeCityCoords[0], activeCityCoords[1]);
+    fetchFiveDayForecast(activeCityCoords[0], activeCityCoords[1]);
+    fetchUvIndex(activeCityCoords[0], activeCityCoords[1]);
+  }, [activeCityCoords]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -83,7 +109,13 @@ export const GlobalContextProvider = ({ children }) => {
         handleInput: handleInput,
       }}
     >
-      <GlobalContextUpdate.Provider>{children}</GlobalContextUpdate.Provider>
+      <GlobalContextUpdate.Provider
+        value={{
+          setActiveCityCoords: setActiveCityCoords,
+        }}
+      >
+        {children}
+      </GlobalContextUpdate.Provider>
     </GlobalContext.Provider>
   );
 };
