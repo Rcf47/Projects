@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { github } from "../utils/icons";
 import ThemeDropdown from "./ThemeDropdown/ThemeDropdown";
 import SearchDialog from "./SearchDialog/SearchDialog";
@@ -21,7 +20,9 @@ function Navbar() {
           <Button
             className="source-code-btn flex items-center gap-2"
             onClick={() => {
-              router.push("https://github.com");
+              router.push(
+                "https://github.com/Rcf47/Projects/tree/main/weather-app",
+              );
             }}
           >
             {github} Source code
