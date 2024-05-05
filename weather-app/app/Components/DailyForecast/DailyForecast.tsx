@@ -54,9 +54,11 @@ function Dailyforecast() {
     <div className="pt-6 px-4 h-[12rem] border rounded-lg flex flex-col gap-8 dark:bg-dark-grey shadow-sm dark:shadow-none col-span-full sm-2:col-span-2 md:col-span-2 xl:col-span-2">
       <div className="h-full flex gap-10 overflow-hidden">
         {todayForecast.length < 1 ? (
-          <h1 className="text-[3rem] line-through text-rose-500">
-            No Data Available!
-          </h1>
+          <div className="flex justify-center items-center">
+            <h1 className="text-[3rem] line-through text-rose-500">
+              No Data Available!
+            </h1>
+          </div>
         ) : (
           <div className="w-full">
             <Carousel>
