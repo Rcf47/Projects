@@ -10,6 +10,7 @@ import {
   snow,
 } from "@/app/utils/icons";
 import { kelvinToCelcious } from "@/app/utils/misc";
+import { Skeleton } from "@/components/ui/skeleton";
 import moment from "moment";
 import { useState, useEffect } from "react";
 
@@ -38,7 +39,7 @@ function Temperature() {
   }, [timezone]);
 
   if (!forecast || !weather) {
-    return <div>Loading...</div>;
+    return <Skeleton className="h-[25rem] w-full " />;
   }
   const temp = kelvinToCelcious(main?.temp);
   const minTemp = kelvinToCelcious(main?.temp_min);
