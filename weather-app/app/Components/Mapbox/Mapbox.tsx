@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
 import { useGlobalContext } from "@/app/context/globalContext";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function FlyToActiveCity({ activeCityCoords }) {
   const map = useMap();
@@ -28,11 +29,7 @@ function Mapbox() {
   const activeCityCoords = forecast?.coord;
 
   if (!forecast || !forecast.coord || !activeCityCoords) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Skeleton className="h-[33rem] w-full " />;
   }
   return (
     <div className="flex-1 basis-[50%] border rounded-lg">
