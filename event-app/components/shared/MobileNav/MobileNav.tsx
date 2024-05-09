@@ -1,3 +1,4 @@
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -7,6 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
+import NavItems from "../NavItems/NavItems";
 
 function MobileNav() {
   return (
@@ -28,6 +30,8 @@ function MobileNav() {
             width={128}
             height={38}
           />
+          <Separator className="border border-gray-50" />
+          <NavItems />
         </SheetContent>
       </Sheet>
     </nav>
